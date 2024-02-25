@@ -1,7 +1,13 @@
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Footer from "./components/Footer";
+
 function App() {
   return (
     <div className="App">
-      <h1 className="text-5xl text-red-500 font-bold ">tailwind working</h1>
+      <Header />
+      <Hero />
+      <Footer />
     </div>
   );
 }
