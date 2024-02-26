@@ -1,4 +1,5 @@
-import heroDoctorImage from "../assets/images/doctors-day-cute-young-handsome-man-lab-coat-glasses-smiling-holding-book.jpg";
+// ASSETS
+import heroDoctorImage from "../assets/images/hero-logo.jpg";
 import testimonialLogo1 from "../assets/images/testimonial-image-1.jpeg";
 import buildingLogo from "../assets/images/building.png";
 import computerPersonLogo from "../assets/images/computer-boy.jpeg";
