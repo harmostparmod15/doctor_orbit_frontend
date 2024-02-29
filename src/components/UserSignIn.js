@@ -9,7 +9,7 @@ import bgImage from "../assets/images/bg-image.jpg";
 
 // UTILS
 import { addUser } from "../utils/userSlice";
-import { SIGN_IN_URL } from "../utils/constants";
+import { USER_SIGN_IN_URL } from "../utils/constants";
 
 //COMPONENTS
 import Error from "./Error";
@@ -36,7 +36,7 @@ const UserSignIn = () => {
         password: password?.current?.value,
       };
       const response = await axios.post(
-        SIGN_IN_URL,
+        USER_SIGN_IN_URL,
         {},
         {
           headers: headers,

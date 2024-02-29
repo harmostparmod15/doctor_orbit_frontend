@@ -25,8 +25,9 @@ export const ourTopDoctors = [
 ];
 
 //Auth URLs
-export const SIGN_IN_URL = "http://localhost:3003/api/v1/user/signin";
+export const USER_SIGN_IN_URL = "http://localhost:3003/api/v1/user/signin";
+export const USER_SIGN_UP_URL = "http://localhost:3003/api/v1/user/signup";
 
 // Search URLs
-
 export const GET_ALL_DOCTORS_URL = "http://localhost:3000/api/v1/doctors";
+export const GET_DOCTOR_URL = "http://localhost:3000/api/v1/doctor/";

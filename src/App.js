@@ -1,23 +1,15 @@
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 
 // Components
-import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Footer from "./components/Footer";
 import UserSignIn from "./components/UserSignIn";
 import Doctors from "./components/Doctors";
 import Body from "./components/Body";
-
-const HeroAndFooter = () => {
-  return (
-    <>
-      <Hero />
-      <Footer />
-    </>
-  );
-};
+import DoctorDetail from "./components/DoctorDetail";
+import UserSignUp from "./components/UserSignUp";
+import Booking from "./components/Booking";
 
 const appRouter = createBrowserRouter([
   {
@@ -26,17 +18,30 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HeroAndFooter />,
+        element: <Hero />,
       },
       {
         path: "doctors",
         element: <Doctors />,
+      },
+      {
+        path: "booking",
+        element: <Booking />,
       },
     ],
   },
   {
     path: "user/signin",
     element: <UserSignIn />,
+  },
+  {
+    path: "/user/signup",
+    element: <UserSignUp />,
+  },
+
+  {
+    path: "/doctor/:id",
+    element: <DoctorDetail />,
   },
 ]);
 
