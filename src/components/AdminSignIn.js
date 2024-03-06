@@ -1,3 +1,4 @@
+import React from "react";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,12 +10,12 @@ import bgImage from "../assets/images/bg-image.jpg";
 
 // UTILS
 import { addUser } from "../utils/userSlice";
-import { USER_SIGN_IN_URL } from "../utils/constants";
+import { ADMIN_SIGN_IN_URL } from "../utils/constants";
 
 //COMPONENTS
 import Error from "./Error";
 
-const UserSignIn = () => {
+export const AdminSignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ const UserSignIn = () => {
         password: password?.current?.value,
       };
       const response = await axios.post(
-        USER_SIGN_IN_URL,
+        ADMIN_SIGN_IN_URL,
         {},
         {
           headers: headers,
@@ -45,9 +46,10 @@ const UserSignIn = () => {
       console.log("auth resp", response);
 
       if (response?.data?.success === true) {
-        navigate("/doctors");
+        navigate("/admin/me");
         dispatch(
           addUser({
+            isAdmin: true,
             userName: response?.data?.response?.userName,
             token: response?.data?.response?.token,
           })
@@ -76,7 +78,7 @@ const UserSignIn = () => {
             alt="Your Company"
           />
           <h2 className="text-blue-600 font-semibold  mt-10 text-center text-2xl  leading-9 tracking-tight ">
-            Sign in to your account
+            Welcome Admin !!!
           </h2>
         </div>
 
@@ -149,7 +151,6 @@ const UserSignIn = () => {
       {showErrorPage && (
         <Error
           {...errorMessage}
-          origin={"signin"}
           hideErrorPage={() => setShowErrorPage(false)}
         />
       )}
@@ -157,4 +158,4 @@ const UserSignIn = () => {
   );
 };
 
-export default UserSignIn;
+export default AdminSignIn;

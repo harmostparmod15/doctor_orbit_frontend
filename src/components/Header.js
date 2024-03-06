@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // ASSETS
 import titleLogo from "../assets/images/title-logo.png";
 import hamburger from "../assets/images/hamburger.png";
+import userDashLogo from "../assets/images/user-dashboard-logo.jpeg";
 
 //UTILS
 import { removeUser } from "../utils/userSlice";
@@ -12,6 +13,15 @@ const Header = () => {
   const user = useSelector((store) => store?.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // USER DASH ICON
+  const handleUserDashboard = function () {
+    if (user?.isAdmin) {
+      navigate("/admin/me");
+    } else {
+      navigate("/user/me");
+    }
+  };
 
   // HANDLE LOGOUT
   const handleLogOut = function () {
@@ -57,6 +67,25 @@ const Header = () => {
                 Sign in
               </button>
             </Link>
+          </div>
+        )}
+
+        {/*  user profile  */}
+        {user?.userName && (
+          <div
+            onClick={handleUserDashboard}
+            className="relative cursor-pointer    w-20 h-20  justify-center "
+          >
+            <div className="relative ">
+              <img
+                alt="logo"
+                className="rounded-full    "
+                src={userDashLogo}
+              ></img>
+            </div>
+            <h1 className="text-xs text-center font-bold capitalize relative -top-2  ">
+              {user?.userName}
+            </h1>
           </div>
         )}
 
