@@ -36,4 +36,8 @@ export const GET_ALL_DOCTORS_URL = "http://localhost:3000/api/v1/doctors";
 export const GET_DOCTOR_URL = "http://localhost:3000/api/v1/doctor/";
 
 // Booking URLs
+export const BOOKING_URL = "http://localhost:3002/api/v1/booking/new";
 export const GET_USER_BOOKING_URL = "http://localhost:3002/api/v1/bookings";
+export const DELETE_BOOKING_URL = "http://localhost:3002/api/v1/booking/";
+
+export const OngoingCouponCode = "Parmod15";

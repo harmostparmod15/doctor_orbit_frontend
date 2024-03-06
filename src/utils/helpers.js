@@ -16,3 +16,20 @@ export const checkValidData = (email, password) => {
     return { email: true, pass: true };
   }
 };
+
+export const checkValidBookingDate = (bookingDate) => {
+  const dateStr = String(new Date()).split(" ");
+  const dayNumber = Number(dateStr[2]);
+
+  bookingDate = bookingDate.split("-");
+  const bookingDayNumber = Number(bookingDate[2]);
+
+  if (bookingDayNumber < dayNumber) {
+    // console.log("invalid booking");
+    // alert("invalid booking date");
+
+    return false;
+  } else {
+    return true;
+  }
+};

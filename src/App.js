@@ -13,6 +13,7 @@ import Booking from "./components/Booking";
 import { AdminSignIn } from "./components/AdminSignIn";
 import AdminDashboard from "./components/AdminDashboard";
 import UserDashboard from "./components/UserDashboard";
+import Payment from "./components/Payment";
 
 const appRouter = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/doctor/:id",
     element: <DoctorDetail />,
+  },
+  {
+    path: "/payment",
+    element: <Payment />,
   },
 ]);
 

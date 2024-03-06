@@ -13,6 +13,7 @@ import arrowLogo from "../assets/images/arrow-logo.png";
 // COMPONENTS
 import Header from "./Header";
 import DashboardScreen from "./DashboardScreen";
+import UserDashboardBookings from "./UserDashboardBookings";
 
 const UserDashboard = () => {
   const user = useSelector((store) => store?.user);
@@ -21,7 +22,7 @@ const UserDashboard = () => {
   //  if user is not signed in rediret to home
   useEffect(() => {
     if (!user) {
-      navigate("/sign-in");
+      navigate("/user/signin");
     }
   }, []);
 
@@ -129,7 +130,7 @@ const UserDashboard = () => {
 
         {/*  what to show ? right -side summary page   * or *  each booking detail [booking cards] */}
         {showBookingDetails === true ? (
-          <UserDashboard />
+          <UserDashboardBookings />
         ) : (
           // right side summary page
           <div className="w-9/12  flex flex-col gap-32 bg-slate-50">
@@ -172,9 +173,9 @@ const UserDashboard = () => {
                 titleFirstScreenEnd="Booked from DoctorOrbit"
                 titleSecondScreen="Upcoming Booking on"
                 count2={
-                  bookingData?.data[0].appointmentDate
+                  bookingData?.data[0]?.appointmentDate
                     .split("-")[2]
-                    .split("T")[0]
+                    .split("T")[0] + "th"
                 }
                 titleSecondScreenEnd="Booked from DoctorOrbit"
               />
