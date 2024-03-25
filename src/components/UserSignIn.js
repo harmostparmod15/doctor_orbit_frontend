@@ -45,7 +45,7 @@ const UserSignIn = () => {
       console.log("auth resp", response);
 
       if (response?.data?.success === true) {
-        navigate("/doctors");
+        navigate("/user/me");
         dispatch(
           addUser({
             userName: response?.data?.response?.userName,

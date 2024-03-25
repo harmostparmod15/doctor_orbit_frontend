@@ -27,7 +27,7 @@ const ShimmerBooking = () => {
   );
 };
 
-const UserDashboardBookings = () => {
+const UserDashboardBookings = ({ showCancelBtn }) => {
   const user = useSelector((store) => store?.user);
   const navigate = useNavigate();
   if (!user?.token) {
@@ -117,6 +117,7 @@ const UserDashboardBookings = () => {
                     {userBookings.map((booking) => (
                       <BookingCard
                         {...booking}
+                        showCancelBtn={showCancelBtn}
                         bookingDeleted={() => setBookingDeleted(true)}
                       />
                     ))}

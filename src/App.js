@@ -14,6 +14,7 @@ import { AdminSignIn } from "./components/AdminSignIn";
 import AdminDashboard from "./components/AdminDashboard";
 import UserDashboard from "./components/UserDashboard";
 import Payment from "./components/Payment";
+import BookingCancellation from "./components/BookingCancellation";
 
 const appRouter = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const appRouter = createBrowserRouter([
       {
         path: "booking",
         element: <Booking />,
+      },
+      {
+        path: "cancellation-procedure",
+        element: <BookingCancellation />,
       },
     ],
   },

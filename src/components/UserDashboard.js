@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // UTILS
@@ -28,6 +28,7 @@ const UserDashboard = () => {
 
   const [bookingData, setBookingData] = useState(null);
   const [showBookingDetails, setShowBookingDetails] = useState(false);
+  const [showCancelButton, setShowCancelButton] = useState(false);
   const [refreshBooking, setRefreshBooking] = useState(false);
 
   useEffect(() => {
@@ -90,7 +91,10 @@ const UserDashboard = () => {
                 <div className="flex ">
                   <img alt="logo" className="w-8 h-6" src={arrowLogo}></img>
                   <li
-                    onClick={() => setShowBookingDetails(true)}
+                    onClick={() => {
+                      setShowBookingDetails(true);
+                      setShowCancelButton(false);
+                    }}
                     className="cursor-pointer font-bold  "
                   >
                     Your Bookings
@@ -115,13 +119,23 @@ const UserDashboard = () => {
               <ul className="flex flex-col gap-4 py-8  px-8 text-slate-700">
                 <div className="flex ">
                   <img alt="logo" className="w-8 h-6" src={arrowLogo}></img>
-                  <li className="cursor-pointer font-bold  ">CancelBooking</li>
+                  <li
+                    onClick={() => {
+                      setShowBookingDetails(true);
+                      setShowCancelButton(true);
+                    }}
+                    className="cursor-pointer font-bold  "
+                  >
+                    CancelBooking
+                  </li>
                 </div>
                 <div className="flex ">
                   <img alt="logo" className="w-8 h-6" src={arrowLogo}></img>
-                  <li className="cursor-pointer font-bold ">
-                    Cancellation Procedure
-                  </li>
+                  <Link to={"/cancellation-procedure"}>
+                    <li className="cursor-pointer font-bold ">
+                      Cancellation Procedure
+                    </li>
+                  </Link>
                 </div>
               </ul>
             </div>
@@ -130,7 +144,7 @@ const UserDashboard = () => {
 
         {/*  what to show ? right -side summary page   * or *  each booking detail [booking cards] */}
         {showBookingDetails === true ? (
-          <UserDashboardBookings />
+          <UserDashboardBookings showCancelBtn={showCancelButton} />
         ) : (
           // right side summary page
           <div className="w-9/12  flex flex-col gap-32 bg-slate-50">

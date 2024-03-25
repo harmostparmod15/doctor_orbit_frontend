@@ -51,7 +51,9 @@ const Header = () => {
 
         {/*  nav links */}
         <ul className="hidden w-7/12 font-extrabold   text-gray-400 pt-5  md:gap-4   px-16 md:flex justify-between  text-lg  xl:text-xl ">
-          <li className="text-[#007AA3]">Home</li>
+          <Link to={"/"}>
+            <li className="text-[#007AA3] cursor-pointer ">Home</li>
+          </Link>
           <Link to={"/doctors"} className="cursor-pointer ">
             <li>Doctors</li>
           </Link>

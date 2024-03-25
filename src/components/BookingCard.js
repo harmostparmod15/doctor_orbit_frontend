@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 const BookingCard = ({
+  showCancelBtn,
   patientName,
   patientMobile,
   appointmentDate,
@@ -35,6 +36,10 @@ const BookingCard = ({
     }
   };
 
+  const dateArr = appointmentDate.split("T");
+  console.log("date arr", dateArr);
+  appointmentDate = dateArr[0];
+
   return (
     <div className="w-5/12  flex flex-col items-center justify-center bg-slate-50 rounded-lg  ">
       <h1 className="bg-green-100 text-gray-700   py-2 px-4 mt-4">Booking</h1>
@@ -43,12 +48,20 @@ const BookingCard = ({
         <h1 className="w-9/12  rounded-md">Mobile Number : {patientMobile}</h1>
         <h1 className="w-9/12  rounded-md">Date : {appointmentDate}</h1>
       </div>
-      <button
+      {showCancelBtn && (
+        <button
+          onClick={() => handleDeleteBooking(id)}
+          className="py-2 px-4 bg-red-300 text-white rounded-lg mb-2"
+        >
+          Cancel
+        </button>
+      )}
+      {/* <button
         onClick={() => handleDeleteBooking(id)}
         className="py-2 px-4 bg-red-300 text-white rounded-lg mb-2"
       >
         Cancel
-      </button>
+      </button> */}
     </div>
   );
 };
