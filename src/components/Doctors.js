@@ -9,20 +9,46 @@ import Shimmer from "./Shimmer";
 // ASSETS
 import { GET_ALL_DOCTORS_URL } from "../utils/constants";
 import { ourTopDoctors } from "../utils/constants";
+import { getData } from "../utils/helpers";
 
 const Doctors = () => {
-  const [doctorSearch, setDoctorSearch] = useState([]);
   const [allDoctors, setDoctor] = useState([]);
   const [filteredDoctor, setFilteredDoctor] = useState([]);
+  const [doctorSearch, setDoctorSearch] = useState([]);
+  const [showClearInputBoxBtn, setShowClearInputBoxBtn] = useState(false);
 
+  // HOF
   const DoctorCardPromoted = withPromotedLabel(DoctorCard);
+
+  // handle option change
+  const handleOptionChange = (e) => {
+    const data = getData(e?.target?.value, allDoctors);
+    setFilteredDoctor(data);
+  };
+
+  // handle doctor search
+  const handleSearchDoctor = () => {
+    const data = allDoctors.filter((doc) =>
+      doc?.name?.toLowerCase()?.includes(doctorSearch?.toLowerCase())
+    );
+    setFilteredDoctor(data);
+    setShowClearInputBoxBtn(true);
+  };
+
+  // handle clear input box after search
+  const handleClearInputBox = () => {
+    setDoctorSearch([]);
+    setShowClearInputBoxBtn(false);
+    setFilteredDoctor(allDoctors);
+  };
 
   // api call
   const getDoctors = async () => {
     const data = await fetch(GET_ALL_DOCTORS_URL);
     const json = await data.json();
     console.log(json);
-    setFilteredDoctor(json.data);
+    setDoctor(json?.data);
+    setFilteredDoctor(json?.data);
   };
 
   useEffect(() => {
@@ -70,23 +96,73 @@ const Doctors = () => {
           </div>
         </div>
 
-        {/* INPPUT SEARCH */}
+        {/*  SEARCH & FILTER */}
         <div className=" relative -top-32 w-9/12 mt-8 flex  mx-auto  bg-white shadow-2xl rounded-xl justify-between px-4   py-6">
-          <div className="py-4 rounded-lg w-3/12 bg-slate-100 flex items-center justify-center">
+          {/*  FILTERS SECTION */}
+          <div className="py-4 rounded-lg w-3/12 bg-slate-100 flex items-center justify-around  ">
             <h1>filters</h1>
+            <select
+              onChange={(e) => handleOptionChange(e)}
+              className="border rounded-lg px-4"
+            >
+              <option value="all">All</option>
+
+              <option value="promoted_doctor">Promoted Doctors</option>
+
+              <option value="fees_less_than_500">Fees &lt; 500</option>
+
+              <option value="more_than_4_star">Rating (4-5)</option>
+            </select>
           </div>
+
+          {/*  INPUT SEARCH BOX */}
           <input
             onChange={(e) => {
               setDoctorSearch(e.target.value);
             }}
+            value={doctorSearch}
             className="w-7/12 py-2 rounded-lg px-8  border  bg-slate-50"
             type="text"
             placeholder="Search for Doctors"
           ></input>
+
+          {showClearInputBoxBtn && (
+            <span className="cursor-pointer  " onClick={handleClearInputBox}>
+              <svg
+                width="45"
+                height="45"
+                viewBox="0 0 45 45"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="0.5"
+                  y="0.5"
+                  width="44"
+                  height="44"
+                  rx="22"
+                  fill="white"
+                  stroke="#9BA3AF"
+                />
+                <line
+                  x1="8.64645"
+                  y1="34.7233"
+                  x2="34.7233"
+                  y2="8.64645"
+                  stroke="#D9D9D9"
+                />
+                <line
+                  x1="34.7233"
+                  y1="35.4304"
+                  x2="8.64645"
+                  y2="9.35356"
+                  stroke="#D9D9D9"
+                />
+              </svg>
+            </span>
+          )}
           <button
-            // onClick={() =>
-            //   useDoctorFilter(doctorSearch, allDoctors, setFilteredDoctor)
-            // }
+            onClick={handleSearchDoctor}
             className="bg-blue-500 rounded-lg px-8 text-white hover:bg-blue-50 hover:text-blue-400 transition-all duration-500   "
           >
             Search
@@ -94,7 +170,7 @@ const Doctors = () => {
         </div>
 
         {/* ALL DOCTORS HERE */}
-        <div className=" -mt-20 w-10/12 mx-auto justify-between flex flex-wrap gap-10 ">
+        <div className=" -mt-20 w-10/12 mx-auto justify-around      flex flex-wrap gap-10 ">
           {/*  prmoted label or simple card */}
 
           {filteredDoctor.map((doc) => (

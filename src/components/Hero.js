@@ -4,6 +4,7 @@ import testimonialLogo1 from "../assets/images/testimonial-image-1.jpeg";
 import buildingLogo from "../assets/images/building.png";
 import computerPersonLogo from "../assets/images/computer-boy.jpeg";
 import bookingDoctorLogo from "../assets/images/booking-doctor.jpeg";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -33,9 +34,11 @@ const HeroSection = () => {
           </p>
           {/*  buttons */}
           <div className="sm:w-8/12 w-11/12 flex  gap-4 pt-4 ">
-            <button className="w-6/12 bg-white text-[#0084AC] py-2  rounded-md font-[1000] text-lg hover:scale-95  transition-all duration-500 ">
-              Get Started
-            </button>
+            <Link className="w-6/12 border" to={"/doctors"}>
+              <button className="w-full bg-white text-[#0084AC] py-2  rounded-md font-[1000] text-lg hover:scale-95  transition-all duration-500 ">
+                Get Started
+              </button>
+            </Link>
 
             <button className="w-6/12 border border-white text-white bg-[#0084AC] py-2  rounded-md font-[1000] text-lg   ">
               Call Now
