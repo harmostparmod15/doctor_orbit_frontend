@@ -25,9 +25,6 @@ export const checkValidBookingDate = (bookingDate) => {
   const bookingDayNumber = Number(bookingDate[2]);
 
   if (bookingDayNumber < dayNumber) {
-    // console.log("invalid booking");
-    // alert("invalid booking date");
-
     return false;
   } else {
     return true;
@@ -40,9 +37,7 @@ export const filterByPromotedDoctors = (allDoctors) => {
 };
 
 export const filterByFees = (allDoctors) => {
-  console.log("fees called");
   const data = allDoctors?.filter((doc) => doc?.fees < 500);
-  console.log("fees", data);
   return data;
 };
 
@@ -52,7 +47,6 @@ export const filterByHighRating = (allDoctors) => {
 };
 
 export const getData = (value, allDoctors) => {
-  console.log("val");
   if (value === "all") {
     return allDoctors;
   } else if (value === "promoted_doctor") {

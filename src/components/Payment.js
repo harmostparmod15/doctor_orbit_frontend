@@ -13,7 +13,7 @@ import paymentLogo from "../assets/images/payment-gtways-logo.jpeg";
 
 const Payment = () => {
   const user = useSelector((store) => store?.user);
-  console.log("redux payment on top", user);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -56,8 +56,7 @@ const Payment = () => {
       );
       navigate("/user/me");
     } catch (error) {
-      console.log("error ", error);
-      alert(error?.response?.data?.message);
+      alert(error?.response?.data?.error);
       alert("try once more");
       navigate(`/doctor/ ${user?.bookingData?.doctorId}`);
     }

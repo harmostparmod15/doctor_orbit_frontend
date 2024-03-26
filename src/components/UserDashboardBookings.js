@@ -54,12 +54,10 @@ const UserDashboardBookings = ({ showCancelBtn }) => {
         headers: headers,
       });
       const json = await response.json();
-      //    console.log(json);
+
       setShowShimmer(false);
       setUserBookings(json?.data);
-      console.log("usbook state", userBookings);
     } catch (error) {
-      console.log(error);
       alert(error);
     }
   };
@@ -67,14 +65,6 @@ const UserDashboardBookings = ({ showCancelBtn }) => {
   useEffect(() => {
     getUserBookings();
   }, [bookingDeleted]);
-  // modifying the upcoming date into nice structure
-
-  // const dateArr = userBookings?.appointment_date.split("");
-  // let modifyDateArr = []
-  // for(let i=0;i<10 ;i++){
-  //      modifyDateArr.push(dateArr[i]);
-  // }
-  // const finalDate = modifyDateArr.join("");
 
   return (
     <div className="w-9/12">

@@ -42,7 +42,6 @@ const DoctorDetail = () => {
         })
       );
       navigate("/booking");
-      console.log("navigating to booking page user is signed up");
     }
   };
 

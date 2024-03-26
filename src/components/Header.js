@@ -27,7 +27,6 @@ const Header = () => {
   const handleLogOut = function () {
     alert("hope to see you soon");
     dispatch(removeUser());
-    console.log("cal action");
     navigate("/");
   };
 

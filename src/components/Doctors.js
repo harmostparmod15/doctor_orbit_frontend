@@ -29,7 +29,9 @@ const Doctors = () => {
   // handle doctor search
   const handleSearchDoctor = () => {
     const data = allDoctors.filter((doc) =>
-      doc?.name?.toLowerCase()?.includes(doctorSearch?.toLowerCase())
+      doc?.name
+        ?.toLowerCase()
+        ?.includes(doctorSearch?.toString()?.toLowerCase())
     );
     setFilteredDoctor(data);
     setShowClearInputBoxBtn(true);
@@ -46,7 +48,6 @@ const Doctors = () => {
   const getDoctors = async () => {
     const data = await fetch(GET_ALL_DOCTORS_URL);
     const json = await data.json();
-    console.log(json);
     setDoctor(json?.data);
     setFilteredDoctor(json?.data);
   };
@@ -118,6 +119,7 @@ const Doctors = () => {
           {/*  INPUT SEARCH BOX */}
           <input
             onChange={(e) => {
+              handleSearchDoctor();
               setDoctorSearch(e.target.value);
             }}
             value={doctorSearch}

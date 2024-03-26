@@ -16,16 +16,13 @@ const UserList = ({ name, mobile_no, email, id, isUserDeleted }) => {
         headers: headers,
       });
 
-      console.log("delete user axios respo", response);
       alert(` user deleted : ${response?.data?.deleteUserEmail}`);
       isUserDeleted();
     } catch (error) {
       alert("error occured");
-      console.log(error);
     }
   };
 
-  // console.log(props);
   return (
     <div className="bg-[#f3f3f3]  text-lg opacit text-slate-600 rounded-md    py-2 flex w-full justify-between">
       <h1 className="w-1/12  px-4">{id}</h1>

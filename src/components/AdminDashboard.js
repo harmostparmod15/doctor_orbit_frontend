@@ -2,14 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
 
-// import UserDashboard from "./UserDashboard";
-
-import appointmentLogo from "../assets/images/appointment-logo.png";
-import appointmentCancelLogo from "../assets/images/appointment-cancel-logo.png";
-
 import arrowLogo from "../assets/images/arrow-logo.png";
 
-import { ADMIN_GET_ALL_USERS, ADMIN_DELETE_USER_URL } from "../utils/constants";
+import { ADMIN_GET_ALL_USERS } from "../utils/constants";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -48,11 +43,8 @@ const AdminDashboard = () => {
       const response = await axios.get(ADMIN_GET_ALL_USERS, {
         headers: headers,
       });
-      console.log("get all users response ", response?.data);
       setUserDetails(response?.data);
-    } catch (error) {
-      console.log("get all users error", error);
-    }
+    } catch (error) {}
   };
 
   // log out the admin
@@ -122,24 +114,25 @@ const AdminDashboard = () => {
               {/*  booking count and days left */}
               <div className=" ">
                 <DashboardScreen
-                  titleFirstScreenAdmin="No. Of Users"
-                  userCountAdmin={userDetails?.data?.length}
-                  titleFirstScreenEndAdmin="Currently Joined"
-                  titleSecondScreenAdmin="No. Of Admins"
-                  adminCountAdmin="1"
-                  titleSecondScreenEndAdmin="Currently Signed"
+                  titleFirstScreen="No. Of Users"
+                  count={userDetails?.data?.length}
+                  titleFirstScreenEnd="Currently Joined"
+                  titleSecondScreen="No. Of Admins"
+                  count2="1"
+                  titleSecondScreenEnd="Currently Signed"
                 />
               </div>
             </div>
             {/*  no of users circle animation  */}
             <div className="w-8/12  mx-auto  py-4 bg-white rounded-md">
-              <h1 className="px-4 text-3xl text-slate-500 ">User Number</h1>
+              <h1 className="px-4 text-3xl text-slate-500 ">
+                Joined Number of Users
+              </h1>
               <div className="flex justify-center items-center py-12">
                 {/*  usercount > 5 */}
-                {userDetails?.data?.length < 5 && (
+                {userDetails?.data?.length <= 5 && (
                   <div className=" flex justify-center items-center border-4 border-b-8 border-b-red-300  border-[#f3f3f3]     w-56 h-56 rounded-full  ">
                     <h1 className="text-7xl text-slate-500  ">
-                      {" "}
                       {userDetails?.data?.length}
                     </h1>
                   </div>

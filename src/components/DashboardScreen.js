@@ -21,8 +21,7 @@ const DashboardScreen = (props) => {
       {/*  all admins count */}
       <div className="shadow-xl shadow-red-300 text-white  p-8 w-6/12  bg-gradient-to-r from-[rgb(120,106,231)] via-[rgb(153,100,222)] to-[rgb(191,94,212)] ">
         <h1 className="opacity-80"> {titleSecondScreen} </h1>
-        {console.log("con2", count2)}
-        {count2 === "undefinedth" ? (
+        {count2 === "undefined" ? (
           <h1 className="text-7xl opacity-80">-</h1>
         ) : (
           <h1 className="text-7xl opacity-80">{count2}</h1>

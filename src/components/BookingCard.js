@@ -1,8 +1,6 @@
 import axios from "axios";
 import { DELETE_BOOKING_URL } from "../utils/constants";
-
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 const BookingCard = ({
   showCancelBtn,
@@ -12,8 +10,6 @@ const BookingCard = ({
   id,
   bookingDeleted,
 }) => {
-  // const [isBookingDeleted , setIsBookingDeleted ] = useState(false);
-
   const user = useSelector((store) => store?.user);
 
   const handleDeleteBooking = async function (id) {
@@ -26,18 +22,14 @@ const BookingCard = ({
         headers: headers,
       });
 
-      console.log(response);
-      console.log(response?.data?.success);
       bookingDeleted();
       alert(response?.data?.message);
-      // alert("please refresh page");
     } catch (error) {
-      console.log("frm signin axios", error);
+      alert(error?.data?.error);
     }
   };
 
   const dateArr = appointmentDate.split("T");
-  console.log("date arr", dateArr);
   appointmentDate = dateArr[0];
 
   return (

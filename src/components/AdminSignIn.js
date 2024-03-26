@@ -43,7 +43,6 @@ export const AdminSignIn = () => {
           headers: headers,
         }
       );
-      console.log("auth resp", response);
 
       if (response?.data?.success === true) {
         navigate("/admin/me");
@@ -58,7 +57,6 @@ export const AdminSignIn = () => {
     } catch (error) {
       setErrorMessage(error?.response?.data);
       setShowErrorPage(true);
-      console.log("frm signin axios", error);
     }
   };
 
@@ -72,11 +70,14 @@ export const AdminSignIn = () => {
       <div className={"" + (showErrorPage && "blur-xl")}>
         {/* HEADING */}
         <div className="sm:mx-auto sm:w-full sm:max-w-sm relative -top-12">
-          <img
-            className="mx-auto  w-56 relative "
-            src={logo}
-            alt="Your Company"
-          />
+          <Link to={"/"}>
+            <img
+              className="mx-auto  w-56 relative "
+              src={logo}
+              alt="Your Company"
+            />
+          </Link>
+
           <h2 className="text-blue-600 font-semibold  mt-10 text-center text-2xl  leading-9 tracking-tight ">
             Welcome Admin !!!
           </h2>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 // UTILS
@@ -69,7 +69,6 @@ const UserSignUp = () => {
     } catch (error) {
       setErrorMessage(error?.response?.data);
       setShowErrorPage(true);
-      console.log("frm signin axios", error);
     }
   };
 
@@ -82,7 +81,13 @@ const UserSignUp = () => {
       />
       <div className={"" + (showErrorPage && "blur-lg")}>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img alt="logo" className="w-56 mx-auto mt-20" src={titleLogo}></img>
+          <Link to={"/"}>
+            <img
+              alt="logo"
+              className="w-56 mx-auto mt-20"
+              src={titleLogo}
+            ></img>
+          </Link>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-blue-600">
             Sign up for your account
           </h2>
@@ -93,7 +98,7 @@ const UserSignUp = () => {
             {/*  user name */}
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                UserName
+                Full name
               </label>
               <div className="mt-2">
                 <input

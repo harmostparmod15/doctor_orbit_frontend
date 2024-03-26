@@ -48,10 +48,7 @@ const UserDashboard = () => {
       });
       const json = await response.json();
       setBookingData(json);
-      console.log(json?.data?.length);
-      console.log(json);
     } catch (error) {
-      console.log(error);
       alert(error);
     }
   };
